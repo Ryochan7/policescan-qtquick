@@ -17,7 +17,7 @@ var stations = {
                 "W9UVI 147.0750 MHz Peoria AARC Repeater": "http://www.broadcastify.com/scripts/playlists/1/23099/-5891805236.m3u",
                 "WX9PIA 444.050 Mhz Amateur Repeater": "http://www.broadcastify.com/scripts/playlists/1/7628/-5891805236.m3u",
             },
-            "Tazwell": {
+            "Tazewell": {
                 "Deer Creek Fire Dispatch": "http://www.broadcastify.com/scripts/playlists/1/15467/-5891829104.m3u",
                 "East Peoria Police and Fire": "http://www.broadcastify.com/scripts/playlists/1/1158/-5891829104.m3u",
                 "Illinois Statewide Emergency Management and ISP": "http://www.broadcastify.com/scripts/playlists/1/10406/-5891829104.m3u",
