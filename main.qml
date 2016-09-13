@@ -53,7 +53,6 @@ ApplicationWindow {
         }
     }
 
-
     MediaPlayer {
         id: mediaPlayer
     }
@@ -77,16 +76,18 @@ ApplicationWindow {
     }
 
     ColumnLayout {
+        id: controlLayout
+
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.leftMargin: 10
         anchors.rightMargin: 10
         anchors.top: parent.top
         anchors.topMargin: 10
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 10
+        //anchors.bottom: parent.bottom
+        //anchors.bottomMargin: 10
 
-        spacing: 10
+        spacing: 6
 
         ComboBox {
             id: countriesComboBox
@@ -181,7 +182,7 @@ ApplicationWindow {
         }
 
         Item {
-            height: 20
+            height: 10
         }
 
         RowLayout {
@@ -253,22 +254,28 @@ ApplicationWindow {
             id: statusText
             text: "Playing: " + currentPlayStatus
             visible: currentPlayStatus !== "";
-        }
-
-        Rectangle {
-            id: item1
+            wrapMode: Text.WordWrap
             Layout.fillWidth: true
-            //Layout.fillHeight: true
-            height: 200
+        }
+    }
 
-            Image {
-                id: bicusDickus
-                width: parent.width
-                anchors.horizontalCenter: parent.horizontalCenter
-                source: "qrc:/DICIS.jpg"
-                fillMode: Image.PreserveAspectCrop
-            }
+    Item {
+        id: item1
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: controlLayout.bottom
+        anchors.bottom: parent.bottom
+        anchors.margins: { leftMargin: 10; rightMargin: 10; topMargin: 20; bottomMargin: 20; }
+        //Layout.fillWidth: true
+        //Layout.fillHeight: true
+        //height: 200
 
+        Image {
+            id: bicusDickus
+            width: parent.width
+            height: parent.height
+            source: "qrc:/DICIS.jpg"
+            fillMode: Image.PreserveAspectCrop
         }
     }
 }
