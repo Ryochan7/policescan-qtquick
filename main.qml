@@ -182,7 +182,7 @@ ApplicationWindow {
         }
 
         Item {
-            height: 10
+            Layout.preferredHeight: 10
         }
 
         RowLayout {
@@ -247,7 +247,7 @@ ApplicationWindow {
         }
 
         Rectangle {
-            height: 20
+            Layout.preferredHeight: 20
         }
 
         Text {
