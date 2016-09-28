@@ -3,5 +3,7 @@
         <file>main.qml</file>
         <file>stations.js</file>
         <file>DICIS.jpg</file>
+        <file>mainandroid.qml</file>
+        <file>MainView.qml</file>
     </qresource>
 </RCC>
