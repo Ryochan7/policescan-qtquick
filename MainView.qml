@@ -264,6 +264,8 @@ ApplicationWindow {
         anchors.top: controlLayout.bottom
         anchors.bottom: parent.bottom
         anchors.margins: { leftMargin: 10; rightMargin: 10; topMargin: 20; bottomMargin: 20; }
+        visible: height >= 100 ? true : false
+
         //Layout.fillWidth: true
         //Layout.fillHeight: true
         //height: 200
