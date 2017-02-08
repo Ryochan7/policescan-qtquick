@@ -1,10 +1,21 @@
 #include <QDebug>
-#include <QApplication>
+//#include <QApplication>
+#ifdef QT_WIDGETS_LIB
+  #include <QApplication>
+#else
+  #include <QGuiApplication>
+#endif
 #include <QQmlApplicationEngine>
 
 int main(int argc, char *argv[])
 {
+#ifdef QT_WIDGETS_LIB
     QApplication app(argc, argv);
+#else
+    QGuiApplication app(argc, argv);
+#endif
+
+    //QApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
 #ifdef Q_OS_ANDROID

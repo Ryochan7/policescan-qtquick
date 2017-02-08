@@ -227,7 +227,7 @@ ApplicationWindow {
                         mediaPlayer.stop();
                     }
 
-                    mediaPlayer.source = "http://www.broadcastify.com/scripts/playlists/1/763/-5891106616.mp3";
+                    mediaPlayer.source = "http://relay.broadcastify.com:80/il_chicago_police2.mp3";
                     mediaPlayer.play();
                     currentPlayStatus = "Chicago Police"
                 }

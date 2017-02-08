@@ -1,9 +1,13 @@
 TEMPLATE = app
 
-QT += qml quick widgets
+QT += qml quick
 
-android {
-    QT += av
+!android {
+  QT += widgets multimedia
+}
+else
+{
+  QT += av
 }
 
 SOURCES += main.cpp
