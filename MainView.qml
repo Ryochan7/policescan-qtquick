@@ -1,6 +1,7 @@
-import QtQuick 2.3
-import QtQuick.Controls 1.2
-import QtQuick.Layouts 1.1
+import QtQuick 2.7
+import QtQuick.Controls 2.0
+import QtQuick.Layouts 1.3
+import QtQuick.Window 2.0
 import QtMultimedia 5.0
 
 import "stations.js" as RadioDatabase
@@ -13,8 +14,22 @@ ApplicationWindow {
     title: qsTr("Police Scanner Test")
 
     property string currentPlayStatus: "";
+    property real fontSizeMulti: {
+        var temp = Screen.devicePixelRatio;
+        if (Screen.devicePixelRatio > 1.0)
+        {
+            temp = temp * 0.75;
+        }
+
+        return temp;
+    }
 
     Component.onCompleted: {
+        countriesComboBox.model = null;
+        statesComboBox.model = null;
+        countiesComboBox.model = null;
+        scannerStationComboBox.model = null;
+
         countriesListModel.clear();
         statesModel.clear();
         countiesModel.clear();
@@ -37,40 +52,56 @@ ApplicationWindow {
                 {
                     var county = counties[k];
                     countiesModel.append({"text": county})
-                    var stations = RadioDatabase.getStationsForCounty(country, region, county);
-
-                    for (var station in stations)
+                    if (k == 0)
                     {
-                        var tempobject = {
-                            "text" : station,
-                            "url" : stations[station],
-                        }
+                        var stations = RadioDatabase.getStationsForCounty(country, region, county);
 
-                        scannerStationModel.append(tempobject);
+                        for (var station in stations)
+                        {
+                            var tempobject = {
+                                "text" : station,
+                                "url" : stations[station],
+                            }
+
+                            scannerStationModel.append(tempobject);
+                        }
                     }
                 }
             }
         }
+
+        countriesComboBox.model = countriesListModel;
+        statesComboBox.model = statesModel;
+        countiesComboBox.model = countiesModel;
+        scannerStationComboBox.model = scannerStationModel;
     }
 
     property QtObject mediaPlayer: MediaPlayer {
 
     }
 
-    menuBar: MenuBar {
-        Menu {
-            title: qsTr("File")
-            /*MenuItem {
-                text: qsTr("&Open")
-                onTriggered: console.log("Open action triggered");
+    header: ToolBar {
+        ToolButton {
+            text: "..."
+            font.pointSize: 14 * fontSizeMulti
+            font.bold: true
+            anchors.right: parent.right
+            rotation: 90.0;
+
+            onClicked: {
+                optionsMenu.open();
             }
-            */
+        }
+
+        Menu {
+            id: optionsMenu
+            transformOrigin: Menu.TopRight
+            x: parent.width - width
 
             MenuItem {
-                text: qsTr("Exit")
-                onTriggered: {
-                    Qt.quit();
-                }
+                font.pointSize: 14 * fontSizeMulti
+                text: "Exit"
+                onTriggered: Qt.quit();
             }
         }
     }
@@ -87,26 +118,31 @@ ApplicationWindow {
         //anchors.bottom: parent.bottom
         //anchors.bottomMargin: 10
 
-        spacing: 6
+        spacing: 8
 
         ComboBox {
             id: countriesComboBox
 
             Layout.fillWidth: true
+            font.pointSize: 14 * fontSizeMulti
+            //Layout.preferredHeight: 80
 
             model: ListModel {
                 id: countriesListModel
             }
 
             onActivated: {
+                statesComboBox.model = null;
                 statesModel.clear();
 
-                var regions = RadioDatabase.getRegionsForCountry(country);
+                var regions = RadioDatabase.getRegionsForCountry(currentText);
                 for (var i = 0, regionlen = regions.length; i < regionlen; i++)
                 {
                     var region = regions[i];
                     statesModel.append({"text": region});
                 }
+
+                statesComboBox.model = statesModel;
             }
         }
 
@@ -114,12 +150,15 @@ ApplicationWindow {
             id: statesComboBox
 
             Layout.fillWidth: true
+            font.pointSize: 14 * fontSizeMulti
+            //Layout.preferredHeight: 80
 
             model: ListModel {
                 id: statesModel
             }
 
             onActivated: {
+                countiesComboBox.model = null;
                 countiesModel.clear();
 
                 var country = countriesListModel.get(countriesComboBox.currentIndex).text;
@@ -131,6 +170,8 @@ ApplicationWindow {
                     var county = counties[i];
                     countiesModel.append({"text": county});
                 }
+
+                countiesComboBox.model = countiesModel;
             }
         }
 
@@ -138,12 +179,15 @@ ApplicationWindow {
             id: countiesComboBox
 
             Layout.fillWidth: true
+            font.pointSize: 14 * fontSizeMulti
+            //Layout.preferredHeight: 80
 
             model: ListModel {
                 id: countiesModel
             }
 
             onActivated: {
+                scannerStationComboBox.model = null;
                 scannerStationModel.clear();
 
                 var country = countriesListModel.get(countriesComboBox.currentIndex).text;
@@ -160,6 +204,8 @@ ApplicationWindow {
 
                     scannerStationModel.append(tempobject);
                 }
+
+                scannerStationComboBox.model = scannerStationModel;
             }
         }
 
@@ -167,6 +213,8 @@ ApplicationWindow {
             id: scannerStationComboBox
 
             Layout.fillWidth: true
+            font.pointSize: 14 * fontSizeMulti
+            //Layout.preferredHeight: 80
 
             model: ListModel {
                 id: scannerStationModel
@@ -185,6 +233,8 @@ ApplicationWindow {
             Button {
                 text: "Play"
                 Layout.fillWidth: true
+                //Layout.preferredHeight: 80
+                font.pointSize: 14 * fontSizeMulti
 
                 onClicked: {
                     if (mediaPlayer.playbackState === MediaPlayer.PlayingState)
@@ -210,6 +260,8 @@ ApplicationWindow {
             Button {
                 text: "Stop"
                 Layout.fillWidth: true
+                //Layout.preferredHeight: 80
+                font.pointSize: 14 * fontSizeMulti
 
                 onClicked: {
                     mediaPlayer.stop();
@@ -220,6 +272,8 @@ ApplicationWindow {
             Button {
                 text: "TEST [Chicago Police]"
                 Layout.fillWidth: true
+                //Layout.preferredHeight: 80
+                font.pointSize: 14 * fontSizeMulti
 
                 onClicked: {
                     if (mediaPlayer.playbackState === MediaPlayer.PlayingState)
@@ -236,6 +290,8 @@ ApplicationWindow {
             Button {
                 text: "Exit"
                 Layout.fillWidth: true
+                //Layout.preferredHeight: 80
+                font.pointSize: 14 * fontSizeMulti
 
                 onClicked: {
                     console.log("EXIT PROGRAM");
@@ -254,6 +310,7 @@ ApplicationWindow {
             visible: currentPlayStatus !== "";
             wrapMode: Text.WordWrap
             Layout.fillWidth: true
+            font.pointSize: 12 * fontSizeMulti
         }
     }
 
@@ -277,6 +334,8 @@ ApplicationWindow {
             source: "qrc:/DICIS.jpg"
             fillMode: Image.PreserveAspectCrop
         }
+
+
     }
 }
 
