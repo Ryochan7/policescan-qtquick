@@ -10,7 +10,7 @@ var stations = {
                 "Illinois Statewide Emergency Management and ISP": "http://relay.broadcastify.com:80/2688078843.mp3",
                 "Logan-Trivoli Fire and Rescue": "http://relay.broadcastify.com/534665862.mp3",
                 "Peoria City Fire Dispatch - PEOR 1 and 2": "http://relay.broadcastify.com/796834349.mp3",
-                "Peoria City Police Dispatch - PREP 1": "http://relay.broadcastify.com/892764013.mp3",
+                "Peoria City Police Dispatch - PREP 1": "http://relay.broadcastify.com/mwtgxh0vq3nrf5c.mp3",
                 "Peoria County Fire - Digital": "http://relay.broadcastify.com/978466158.mp3",
                 "Peoria County Fire Dispatch - Analog": "http://relay.broadcastify.com/910249871.mp3",
                 "Peoria County Sheriff Dispatch": "http://relay.broadcastify.com/249300614.mp3",
