@@ -7,23 +7,20 @@ var stations = {
    "United States": {
         "Illinois": {
             "Peoria": {
-                "Illinois Statewide Emergency Management and ISP": "http://relay.broadcastify.com:80/2688078843.mp3",
-                "Logan-Trivoli Fire and Rescue": "http://relay.broadcastify.com/534665862.mp3",
-                "Peoria City Fire Dispatch - PEOR 1 and 2": "http://relay.broadcastify.com/796834349.mp3",
-                "Peoria City Police Dispatch - PREP 1": "http://relay.broadcastify.com/mwtgxh0vq3nrf5c.mp3",
-                "Peoria County Fire - Digital": "http://relay.broadcastify.com/978466158.mp3",
-                "Peoria County Fire Dispatch - Analog": "http://relay.broadcastify.com/910249871.mp3",
-                "Peoria County Sheriff Dispatch": "http://relay.broadcastify.com/249300614.mp3",
-                "WX9PIA 444.050 Mhz Amateur Repeater": "http://relay.broadcastify.com/143165466.mp3",
+                "Illinois Statewide Emergency Management and ISP": "http://relay.broadcastify.com/x3q4zn0tvd7wrp8.mp3",
+                "Logan-Trivoli Fire and Rescue": "http://relay.broadcastify.com/7pkt0vhbd892y5f.mp3",
+                "Peoria City Fire Dispatch - PEOR 1 and 2": "http://relay.broadcastify.com/pb1jvyf5qr8m0s2.mp3",
+                "Peoria City Police Dispatch - PREP 1": "http://relay.broadcastify.com/hr7wbx2fqvy5t0s.mp3",
+                "Peoria County Fire - Digital": "http://relay.broadcastify.com/g34bvrxqmd0t5hs.mp3",
+                "Peoria County Sheriff Dispatch": "http://relay.broadcastify.com/xg2bhntz48my70s.mp3",
             },
             "Tazewell": {
-                "Deer Creek Fire Dispatch": "http://relay.broadcastify.com:80/1269221.mp3",
-                "East Peoria Police and Fire": "http://relay.broadcastify.com:80/613663865.mp3",
-                "Illinois Statewide Emergency Management and ISP": "http://relay.broadcastify.com:80/268807884.mp3",
-                "Morton Fire": "http://relay.broadcastify.com:80/298110944.mp3",
-                "Pekin Fire - North": "http://relay.broadcastify.com:80/430334611.mp3",
-                "Pekin Police and Fire, Tazewell County Sheriff": "http://relay.broadcastify.com:80/15402082.mp3",
-                "Washington Police and Fire, Northern Tazewell Fire": "http://relay.broadcastify.com:80/261742943.mp3",
+                "Deer Creek Fire and EMS Dispatch": "http://relay.broadcastify.com/q42bmd350p6sk81.mp3",
+                "Tazewell County Police and Fire": "http://relay.broadcastify.com/gp9snj0yw72h4z8.mp3",
+                "Illinois Statewide Emergency Management and ISP": "http://relay.broadcastify.com/x3q4zn0tvd7wrp8.mp3",
+                "Morton Fire": "http://relay.broadcastify.com/21c5rxtwb8gkzfs.mp3",
+                "Tazewell County Sheriff, Pekin Police and Fire - TAZCOM": "http://relay.broadcastify.com/b4v78rn9w1xmg3h.mp3",
+                "Washington Police and Fire, Northern Tazewell Fire": "http://relay.broadcastify.com/vwqyc1j0tb8zs7f.mp3",
             }
         }
     }
