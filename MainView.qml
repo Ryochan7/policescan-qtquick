@@ -58,12 +58,7 @@ ApplicationWindow {
 
                         for (var station in stations)
                         {
-                            var tempobject = {
-                                "text" : station,
-                                "url" : stations[station],
-                            }
-
-                            scannerStationModel.append(tempobject);
+                            scannerStationModel.append(stations[station]);
                         }
                     }
                 }
@@ -197,12 +192,7 @@ ApplicationWindow {
 
                 for (var station in stations)
                 {
-                    var tempobject = {
-                        "text" : station,
-                        "url" : stations[station],
-                    }
-
-                    scannerStationModel.append(tempobject);
+                    scannerStationModel.append(stations[station]);
                 }
 
                 scannerStationComboBox.model = scannerStationModel;
@@ -220,7 +210,7 @@ ApplicationWindow {
                 id: scannerStationModel
             }
 
-            textRole: "text"
+            textRole: "name"
         }
 
         Item {
@@ -248,7 +238,7 @@ ApplicationWindow {
                     {
                         mediaPlayer.source = curstation.url;
                         mediaPlayer.play();
-                        currentPlayStatus = curstation.text;
+                        currentPlayStatus = curstation.name;
                     }
                     else
                     {
