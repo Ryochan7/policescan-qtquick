@@ -6,6 +6,9 @@
   #include <QGuiApplication>
 #endif
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
+
+#include "feeddownloader.h"
 
 int main(int argc, char *argv[])
 {
@@ -18,11 +21,17 @@ int main(int argc, char *argv[])
 #endif
 
     QQmlApplicationEngine engine;
+    FeedDownloader feeddownobj;
+    engine.rootContext()->setContextProperty("feeddown", &feeddownobj);
+
 #ifdef Q_OS_ANDROID
     engine.load(QUrl(QStringLiteral("qrc:/mainandroid.qml")));
 #else
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 #endif
+
+
+
 
     return app.exec();
 }

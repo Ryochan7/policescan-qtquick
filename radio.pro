@@ -1,5 +1,7 @@
 TEMPLATE = app
 
+CONFIG += c++11
+
 QT += qml quick quickcontrols2
 
 android {
@@ -10,7 +12,8 @@ else
   QT += multimedia
 }
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    feeddownloader.cpp
 
 RESOURCES += qml.qrc
 
@@ -31,5 +34,8 @@ DISTFILES += \
     android/res/values/libs.xml
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+
+HEADERS += \
+    feeddownloader.h
 
 

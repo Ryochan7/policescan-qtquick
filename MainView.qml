@@ -12,6 +12,9 @@ ApplicationWindow {
     width: 640
     height: 480
     title: qsTr("Police Scanner Test")
+    property var curstation;
+    property var teststation: false;
+    property var stationQueued: curstation !== null || teststation == true;
 
     property string currentPlayStatus: "";
     property real fontSizeMulti: {
@@ -232,18 +235,9 @@ ApplicationWindow {
                         mediaPlayer.stop();
                     }
 
-                    var curstation = scannerStationModel.get(scannerStationComboBox.currentIndex);
-
-                    if (curstation !== undefined)
-                    {
-                        mediaPlayer.source = curstation.url;
-                        mediaPlayer.play();
-                        currentPlayStatus = curstation.name;
-                    }
-                    else
-                    {
-                        currentPlayStatus = "";
-                    }
+                    curstation = scannerStationModel.get(scannerStationComboBox.currentIndex);
+                    teststation = false;
+                    feeddown.startScanFeed(curstation.feedId);
                 }
             }
 
@@ -254,7 +248,13 @@ ApplicationWindow {
                 font.pointSize: 14 * fontSizeMulti
 
                 onClicked: {
-                    mediaPlayer.stop();
+                    if (mediaPlayer.playbackState === MediaPlayer.PlayingState)
+                    {
+                        mediaPlayer.stop();
+                    }
+
+                    curstation = null;
+                    teststation = false;
                     currentPlayStatus = "";
                 }
             }
@@ -271,9 +271,10 @@ ApplicationWindow {
                         mediaPlayer.stop();
                     }
 
-                    mediaPlayer.source = "http://relay.broadcastify.com/pmq7kwzf3vny0sg.mp3";
-                    mediaPlayer.play();
-                    currentPlayStatus = "Chicago Police"
+                    curstation = null;
+                    teststation = true;
+                    feeddown.startScanFeed(763);
+
                 }
             }
 
@@ -296,7 +297,7 @@ ApplicationWindow {
 
         Text {
             id: statusText
-            text: "Playing: " + currentPlayStatus
+            text: stationQueued ? "Playing: " + currentPlayStatus : currentPlayStatus;
             visible: currentPlayStatus !== "";
             wrapMode: Text.WordWrap
             Layout.fillWidth: true
@@ -324,8 +325,40 @@ ApplicationWindow {
             source: "qrc:/DICIS.jpg"
             fillMode: Image.PreserveAspectCrop
         }
+    }
 
+    Connections
+    {
+        target: feeddown
+        onFeedReady: function (url)
+        {
+            if (curstation !== null)
+            {
+                mediaPlayer.source = url;
+                mediaPlayer.play();
+                currentPlayStatus = curstation.name;
+            }
+            else if (teststation)
+            {
+                mediaPlayer.source = url;
+                mediaPlayer.play();
+                currentPlayStatus = "Chicago Police"
+            }
+            else
+            {
+                currentPlayStatus = "Invalid selection";
+            }
+        }
 
+        onError: function (errormsg)
+        {
+            currentPlayStatus = errormsg;
+        }
+
+        onParseFail: function (msg)
+        {
+            currentPlayStatus = msg;
+        }
     }
 }
 
