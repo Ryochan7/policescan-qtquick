@@ -221,6 +221,7 @@ ApplicationWindow {
         }
 
         RowLayout {
+            id: buttonRow
             Layout.fillWidth: true
 
             Button {
@@ -237,6 +238,7 @@ ApplicationWindow {
 
                     curstation = scannerStationModel.get(scannerStationComboBox.currentIndex);
                     teststation = false;
+                    buttonRow.enabled = false;
                     feeddown.startScanFeed(curstation.feedId);
                 }
             }
@@ -273,6 +275,7 @@ ApplicationWindow {
 
                     curstation = null;
                     teststation = true;
+                    buttonRow.enabled = false;
                     feeddown.startScanFeed(763);
 
                 }
@@ -348,16 +351,20 @@ ApplicationWindow {
             {
                 currentPlayStatus = "Invalid selection";
             }
+
+            buttonRow.enabled = true;
         }
 
         onError: function (errormsg)
         {
             currentPlayStatus = errormsg;
+            buttonRow.enabled = true;
         }
 
         onParseFail: function (msg)
         {
             currentPlayStatus = msg;
+            buttonRow.enabled = true;
         }
     }
 }
