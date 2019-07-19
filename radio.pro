@@ -24,7 +24,8 @@ QML_IMPORT_PATH =
 # Default rules for deployment.
 include(deployment.pri)
 
-unix: LIBS += -lssl -lcrypto
+unix:!android: LIBS += -lssl -lcrypto
+else: include($$(HOME)/Sources/android_openssl/openssl.pri)
 
 unix:android: DISTFILES += \
     android/AndroidManifest.xml \
@@ -35,7 +36,7 @@ unix:android: DISTFILES += \
     android/gradlew.bat \
     android/res/values/libs.xml
 
-ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+unix:android: ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
 HEADERS += \
     feeddownloader.h
