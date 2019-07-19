@@ -24,7 +24,9 @@ QML_IMPORT_PATH =
 # Default rules for deployment.
 include(deployment.pri)
 
-DISTFILES += \
+unix: LIBS += -lssl -lcrypto
+
+unix:android: DISTFILES += \
     android/AndroidManifest.xml \
     android/build.gradle \
     android/gradle/wrapper/gradle-wrapper.jar \

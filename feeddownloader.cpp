@@ -9,7 +9,7 @@ FeedDownloader::FeedDownloader(QObject *parent) : QObject(parent)
 
 void FeedDownloader::startScanFeed(int feedId)
 {
-    QNetworkRequest request(QUrl(QString("http://www.broadcastify.com/listen/webpl.php?feedId=%1").arg(feedId)));
+    QNetworkRequest request(QUrl(QString("https://www.broadcastify.com/listen/webpl.php?feedId=%1").arg(feedId)));
     QUrl params;
     QUrlQuery query;
     query.addQueryItem("t", "14");
