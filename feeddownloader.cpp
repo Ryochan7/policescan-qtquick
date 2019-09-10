@@ -9,7 +9,7 @@ FeedDownloader::FeedDownloader(QObject *parent) : QObject(parent)
 
 void FeedDownloader::startScanFeed(int feedId)
 {
-    QNetworkRequest request(QUrl(QString("https://www.broadcastify.com/listen/webpl.php?feedId=%1").arg(feedId)));
+    QNetworkRequest request(QUrl(QString("https://m.broadcastify.com/listen/webpl.php?feedId=%1").arg(feedId)));
     QUrl params;
     QUrlQuery query;
     query.addQueryItem("t", "14");
@@ -19,7 +19,7 @@ void FeedDownloader::startScanFeed(int feedId)
     //tempBa = params.toEncoded(QUrl::RemoveFragment);
     request.setHeader(QNetworkRequest::ContentTypeHeader,
         "application/x-www-form-urlencoded");
-    request.setRawHeader("webAuth", "74f440ad812f0cc2192ab782e27608cc");
+    request.setRawHeader("authtoken", "74f440ad812f0cc2192ab782e27608cc");
     QNetworkReply *reply = manager->post(request, tempBa);
     //QNetworkReply *reply = manager->get(request);
     connect(reply, &QNetworkReply::finished, this, &FeedDownloader::processFeedReply);
@@ -52,7 +52,7 @@ void FeedDownloader::processFeedReply()
 
 QString FeedDownloader::parseFeedUrl(QString text)
 {
-    QRegExp rx("<audio .* src=\"([0-9A-Za-z.:?/=]+)\" type=\"audio/mp3\"");
+    QRegExp rx("<audio src=\"([0-9A-Za-z.:?/=]+)\" type=\"audio/mp3\"");
     QString temp;
     int ind = rx.indexIn(text);
     if (ind >= 0)
