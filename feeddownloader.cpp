@@ -59,6 +59,9 @@ QString FeedDownloader::parseFeedUrl(QString text)
     if (ind >= 0)
     {
         temp = rx.cap(1);
+#ifdef Q_OS_ANDROID
+        temp = temp.replace("https://", "http://");
+#endif
     }
 
     return temp;

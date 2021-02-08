@@ -276,7 +276,7 @@ ApplicationWindow {
                     curstation = null;
                     teststation = true;
                     buttonRow.enabled = false;
-                    feeddown.startScanFeed(17693);
+                    feeddown.startScanFeed(31652);
 
                 }
             }
